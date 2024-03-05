@@ -1,6 +1,5 @@
 import GitHub from '../assets/ico/GitHub.svg'
 import Twitter from '../assets/ico/Twitter.svg'
-import Personal from '../assets/ico/Personal.svg'
 
 export function Header () {
   return (
