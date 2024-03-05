@@ -2,9 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+.onest-mediun {
+  font-family: "Onest", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
 html {
   background-color: #252422;
   color: white;
+  font-family: "Onest", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
 }
 
 /* card background color => #310055*/
