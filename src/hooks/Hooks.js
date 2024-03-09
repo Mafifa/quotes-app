@@ -9,7 +9,7 @@ export function Quotes () {
   const [stringQuote, setQuoteString] = useState('')
   const [stringAuthor, setAuthor] = useState('')
   const [topic, setTopic] = useState('inspirational')
-  const [load, setLoad] = useState(false)
+  const [loading, setLoad] = useState(false)
 
   // TO GET RANDOM TOPICS
   const TOPICS = useMemo(() => {
@@ -29,13 +29,20 @@ export function Quotes () {
     const randomIndex = () => Math.floor(Math.random() * TOPICS.length)
     const newTopic = TOPICS[randomIndex()]
     setTopic(newTopic)
-  }, [TOPICS])
+  }, [quote, TOPICS])
 
   const getQuote = async () => {
-    const newQuote = await taketQuote({ topic })
-    console.log(newQuote)
-    setQuote(newQuote)
+    try {
+      setLoad(true)
+      const newQuote = await taketQuote({ topic })
+      console.log(newQuote)
+      setQuote(newQuote)
+    } catch (e) {
+      console.log('Ocurrio un error llamando a la API')
+    } finally {
+      setLoad(false)
+    }
   }
 
-  return { stringAuthor, stringQuote, getQuote }
+  return { loading, stringAuthor, stringQuote, getQuote }
 }
