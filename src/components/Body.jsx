@@ -1,8 +1,9 @@
 import { Quotes } from '../hooks/Hooks'
 import '../assets/styles/Button.css'
+import { Loading } from './Loading'
 
 export function Body () {
-  const { stringQuote, stringAuthor, getQuote } = Quotes()
+  const { loading, stringQuote, stringAuthor, getQuote } = Quotes()
 
   console.log('Primera parte renderizado')
 
@@ -21,7 +22,7 @@ export function Body () {
       <div className='p-8 my-aut lg:max-w-screen-sm  bg-[#310055]/60 rounded-2xl'>
         <div className='flex items-center justify-center'>
           <p className='text-xl text-pretty text-center max w-1/2'>
-            "{stringQuote}"
+            {loading ? (<Loading />) : `"${stringQuote}"`}
           </p>
           <div className='flex w-1/2 m-auto items-center justify-center'>
             <img className='size-56' src='public/marco aurelio1.jpg' alt='image autor' />
@@ -29,7 +30,9 @@ export function Body () {
         </div>
         <p className='font-bold'>Author: {stringAuthor}</p>
       </div>
-      <button onClick={handleClick} className='bn5 mt-3'>Next Quote</button>
+      <button onClick={handleClick} className='bn5 mt-3' disabled={loading}>
+        {loading ? 'Loading...' : 'Next Quote'}
+      </button>
     </section>
   )
 }
